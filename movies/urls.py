@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from movies import views
+
+#views file holds functions to invoke
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # http://127.0.0.1:8000/admin
+    path('',views.home), # on route IP http://127.0.0.1:8000/
+    #path('home/',views.home),
+    path('movies/', views.movies) #url path / views file / movies view (function) invokes in views file http://127.0.0.1:8000/movies
 ]

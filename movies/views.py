@@ -8,14 +8,15 @@ from .models import Movie
 # def movies (request): #request parameter, first arg call anything you like
 #     return HttpResponse('Hey')
 
-# Example 1
+# EXAMPLE 1
+
 # data = {
 
-# 'movies': ['movie1', 'movie2']
+# 'movies': ['movie3', 'movie4']
 
 # }
 
-# Example 2
+# EXAMPLE 2 - Dictionaty (OBJ) with 'movies' key and list (ARRAY) value which contains 3 dictionaries (OBJS) of data. 
 
 # data = {
 
@@ -42,23 +43,39 @@ from .models import Movie
 
 # }
 
+# EXAMPLE 3 - in models.py see 'class Movie(models.Model):'
+
+data = Movie.objects.all()
+
+
 def movies (request): #request parameter, first arg call anything you like
     
-  #OPTION 1 adding movies data directly 
-  #return render(request, 'movies/movies.html', {'movies': ['movie1', 'movie2']})
+  #OPTION 1 
 
-  # FOR DATA VARIABLES VERSIONS 1 AND 2 
-  # OPTION 2 Adding movies data by data variable via example 1 list or example 2 list and dictionaries
-  #return render(request, 'movies/movies.html', data)
+  # - Accessing movies data directly with '{'movies': ['movie1', 'movie2']}'. This is a dictionary (OBJ) with 'movies' key and a list (array) value.
+   #return render(request, 'movies/movies.html', {'movies': ['movie1', 'movie2']})
 
-  #OPTION 3 adding movies data by data variable from database model
-  data = Movie.objects.all()
-  return render(request, 'movies/movies.html', {'movies': data})
+  # OPTION 2
 
-        
+  # - Accessing data via the 'data' variable in EXAMPLE 1.
+  #return render(request, 'movies/movies.html',  data)
 
-def home (request):
+  # OPTION 3 
+
+  # - Accessing data via the 'data' variable, in EXAMPLE 2. 
+   #return render(request, 'movies/movies.html', data)
+
+  #OPTION 4 
+  # - Accessing data via data variable from database 'Movie' model in EXAMPLE 3
+   return render(request, 'movies/movies.html', {'movies': data})
+
+      
+def home(request):
   return HttpResponse('Home Start')
+
+def detail(request, id):
+  data = Movie.objects.get(pk=id)
+  return render(request, 'movies/detail.html', {'movie': data})
 
 
   

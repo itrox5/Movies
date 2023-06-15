@@ -12,9 +12,11 @@
         <h1>Movies</h1>
         <!-- for loop, iteral through all specified attributes -->
         <ul>
-        {% for movie in movies %}
-            <li>{{movie.title}}</li>
+            {% for movie in movies %}
+            <li><a href="{{movie.id}}">{{movie.title}}</a></li>
         {% endfor %}
+        
+        
         </ul>
     </body>
 </html>
